@@ -1,5 +1,6 @@
 from lowongan.mainLowongan import mainMenuLowongan
 from pelamar.mainPelamar import mainMenuPelamar
+from seleksi.mainSeleksi import mainMenuSeleksi
 
 # ========================== Menu Utama ==========================
 def menuUtama():
@@ -20,6 +21,8 @@ def menuUtama():
             mainMenuLowongan()
         elif pilihan == '2':
             mainMenuPelamar()
+        elif pilihan == '3':
+            mainMenuSeleksi()
         elif pilihan == '4':
             print("Terima kasih telah menggunakan sistem rekrutmen.")
             break
