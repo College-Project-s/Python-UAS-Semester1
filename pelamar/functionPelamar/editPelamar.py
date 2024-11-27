@@ -12,7 +12,17 @@ def functionEditPelamar():
         return
 
     sheet = workbook['Pelamar']
-    kode = input("Masukkan kode pelamar yang ingin diedit (atau ketik 'CANCEL' untuk kembali): ")
+    # Tampilkan data pelamar
+    if sheet.max_row == 1:  # Hanya header yang ada
+        print("Belum ada data pelamar.")
+        workbook.close()
+        return
+
+    print("\nDaftar Pelamar:")
+    for row in sheet.iter_rows(min_row=2, values_only=True):
+        print(f"Kode: {row[0]}, Nama: {row[1]}, Kontak: {row[2]}, Posisi Dilamar: {row[3]}")
+        
+    kode = input("\nMasukkan kode pelamar yang ingin diedit (atau ketik 'CANCEL' untuk kembali): ")
 
     if kode.upper() == 'CANCEL':
         print("Proses mengedit dibatalkan.")
