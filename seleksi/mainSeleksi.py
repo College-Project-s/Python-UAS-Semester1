@@ -1,3 +1,4 @@
+from seleksi.functionSeleksi.updateStatusWawancara import functionUpdateStatusWawancara
 from seleksi.functionSeleksi.rekrutPelamar import functionRekrutPelamar
 from seleksi.functionSeleksi.tampilKandidatDiterima import functionTampilKandidatDiterima
 
@@ -6,16 +7,20 @@ def mainMenuSeleksi():
     print("=" * 45)
     print("          MANAJEMEN SELEKSI PENDAFTAR")
     print("=" * 45)
-    print("1. Rekrut Pelamar")
-    print("2. Tampil Kandidat Diterima")
-    print("3. Kembali")
+    print("1. Seleksi Lolos Wawancara")
+    print("2. Rekrut Pelamar")
+    print("3. Tampil Kandidat Diterima")
+    print("4. Kembali")
     print("=" * 45)
-    subPilihan = input("Pilih menu [1-3]: ")
+    subPilihan = input("Pilih menu [1-4]: ")
     print("\n")
     if subPilihan == '1':
-        functionRekrutPelamar()
+        functionUpdateStatusWawancara()
         mainMenuSeleksi()
     elif subPilihan == '2':
+        functionRekrutPelamar()
+        mainMenuSeleksi()
+    elif subPilihan == '3':
         functionTampilKandidatDiterima()
         mainMenuSeleksi()
     # elif subPilihan == '3':
