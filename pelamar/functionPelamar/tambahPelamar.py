@@ -19,7 +19,6 @@ def functionTambahPelamar():
     sheet_lowongan = workbook['Lowongan']
     posisi_tersedia = [row[1] for row in sheet_lowongan.iter_rows(min_row=2, values_only=True) if row[3] == 'Dibuka']
 
-
     if not posisi_tersedia:
         print("Tidak ada lowongan yang dibuka. Harap tambahkan lowongan terlebih dahulu.")
         workbook.close()
@@ -38,9 +37,10 @@ def functionTambahPelamar():
         print("Posisi tidak valid atau tidak tersedia. Silakan coba lagi.")
 
     # Tambahkan data pelamar ke sheet Pelamar
-    sheet_pelamar = cekApakahAdaExcel(workbook, 'Pelamar', ['Kode Pelamar', 'Nama', 'Kontak', 'Posisi Dilamar'])
+    sheet_pelamar = cekApakahAdaExcel(workbook, 'Pelamar', ['Kode Pelamar', 'Nama', 'Kontak', 'Posisi Dilamar', 'Status Wawancara'])
     kode = f"P{sheet_pelamar.max_row:03d}"
-    sheet_pelamar.append([kode, nama, kontak, posisi])
+    status_wawancara = "Belum"  # Status wawancara otomatis terisi dengan "Belum"
+    sheet_pelamar.append([kode, nama, kontak, posisi, status_wawancara])
     workbook.save(FILE_NAME)
     workbook.close()
     print("Pelamar berhasil ditambahkan.")

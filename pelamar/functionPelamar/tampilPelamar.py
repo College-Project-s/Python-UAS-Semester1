@@ -17,6 +17,6 @@ def functionTampilPelamar():
         return
 
     print("\nDaftar Pelamar:")
-    for row in sheet.iter_rows(min_row=2, values_only=True):
+    for row in sheet.iter_rows(min_row=2, max_col=4, values_only=True):
         print(row)
     workbook.close()
