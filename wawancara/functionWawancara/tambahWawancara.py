@@ -20,8 +20,28 @@ def functionTambahWawancara():
 
     # Memeriksa atau membuat sheet Wawancara
     sheet_wawancara = cekApakahAdaExcel(workbook, 'Wawancara', ['Kode Lowongan', 'Kode Pelamar', 'Nama Pelamar', 'Posisi', 'Jadwal Tanggal', 'Jadwal Jam'])
-
     while True:
+        
+        print("\nDaftar Lowongan:")
+        lowongan_dengan_kandidat = {}
+        for lowongan in sheet_lowongan.iter_rows(min_row=2, values_only=True):
+            kode_lowongan, posisi = lowongan[0], lowongan[1]
+                
+            # Cek jika ada pelamar dengan status wawancara 'Belum' untuk kode lowongan ini
+            jumlah_kandidat = sum(
+                1 for pelamar in sheet_pelamar.iter_rows(min_row=2, values_only=True)
+                if pelamar[3] == posisi and pelamar[4] == 'Belum'
+            )
+            if jumlah_kandidat > 0:
+                lowongan_dengan_kandidat[kode_lowongan] = (posisi, jumlah_kandidat)
+                print(f"Kode: {kode_lowongan}, Posisi: {posisi}, Jumlah Kandidat Menunggu Jadwal Wawancara: {jumlah_kandidat}")
+            
+        # Tampilkan data lowongan
+        if sheet_lowongan.max_row == 1:  # Hanya header yang ada
+            print("Belum ada data lowongan.")
+            workbook.close()
+            return
+
         # Input kode lowongan
         kode_lowongan = input("\nMasukkan kode lowongan untuk menambahkan jadwal wawancara (atau ketik 'CANCEL' untuk keluar): ")
         if kode_lowongan.upper() == 'CANCEL':
@@ -53,7 +73,7 @@ def functionTambahWawancara():
         # Tampilkan daftar pelamar yang memenuhi syarat
         print(f"\nPelamar dengan status wawancara 'Belum' untuk lowongan {kode_lowongan}:")
         for i, (kode_pelamar, nama, posisi) in enumerate(pelamar_lowongan, start=1):
-            print(f"{i}. Kode: {kode_pelamar}, Nama: {nama}, Posisi: {posisi}")
+            print(f"{i}. Kode: {kode_pelamar}, Nama: '{nama}', Posisi: {posisi}")
 
         # Pilih pelamar untuk wawancara
         while True:

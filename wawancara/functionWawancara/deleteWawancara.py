@@ -16,7 +16,7 @@ def functionHapusWawancara():
     for row in sheet.iter_rows(min_row=2, values_only=True):
         print(f"Kode Pelamar: {row[1]}, Nama: {row[2]}, Posisi: {row[3]}, Tanggal: {row[4]}, Jam: {row[5]}")
         
-    kode = input("Masukkan kode Pelamar yang ingin dihapus (atau ketik 'CANCEL' untuk kembali): ")
+    kode = input("\nMasukkan kode Pelamar yang ingin dihapus (atau ketik 'CANCEL' untuk kembali): ")
 
     if kode.upper() == 'CANCEL':
         print("Proses penghapusan dibatalkan.")

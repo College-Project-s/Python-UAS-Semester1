@@ -31,7 +31,10 @@ def functionEditWawancara():
             print(f"Kode Lowongan: {row[0]}, Kode Pelamar: {row[1]}, Nama Pelamar: {row[2]}, Posisi: {row[3]}, Tanggal: {row[4]}, Jam: {row[5]}")
 
         # Input kode pelamar untuk diubah
-        kode_pelamar = input("\nMasukkan kode pelamar yang ingin diubah jadwal wawancaranya: ")
+        kode_pelamar = input("\nMasukkan kode pelamar yang ingin diubah jadwal wawancaranya (atau ketik 'CANCEL' untuk keluar): ")
+        if kode_pelamar.upper() == 'CANCEL':
+            print("Proses selesai.")
+            break
 
         # Cari data wawancara berdasarkan kode pelamar
         baris_wawancara = None
