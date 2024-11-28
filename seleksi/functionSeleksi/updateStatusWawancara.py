@@ -13,18 +13,7 @@ def functionUpdateStatusWawancara():
         workbook.close()
         return
 
-    # Pastikan sheet Seleksi ada
-    if 'Seleksi' not in workbook.sheetnames:
-        print("Sheet Seleksi belum ada.")
-        workbook.close()
-        return
-
     sheet_pelamar = workbook['Pelamar']
-    sheet_seleksi = workbook['Seleksi']
-
-    # Dapatkan daftar kode pelamar yang sudah ada di sheet Seleksi
-    kode_pelamar_seleksi = set(row[0] for row in sheet_seleksi.iter_rows(min_row=2, values_only=True))
-
     # Periksa apakah ada data di sheet Pelamar
     if sheet_pelamar.max_row == 1:  # Hanya header yang ada
         print("Belum ada data pelamar.")
@@ -36,7 +25,7 @@ def functionUpdateStatusWawancara():
         pelamar_proses = [
             (row[0].value, row[1].value, row[3].value)  # Kode Pelamar, Nama, Posisi
             for row in sheet_pelamar.iter_rows(min_row=2)
-            if row[4].value == "Proses" and row[0].value not in kode_pelamar_seleksi  # Status Wawancara = "Proses" dan belum di Seleksi
+            if row[4].value == "Proses"
         ]
 
         if not pelamar_proses:
