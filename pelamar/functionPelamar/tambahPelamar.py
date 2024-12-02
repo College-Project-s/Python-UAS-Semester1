@@ -17,7 +17,7 @@ def functionTambahPelamar():
         return
 
     sheet_lowongan = workbook['Lowongan']
-    posisi_tersedia = [row[1] for row in sheet_lowongan.iter_rows(min_row=2, values_only=True) if row[3] == 'Dibuka']
+    posisi_tersedia = [row[1] for row in sheet_lowongan.iter_rows(min_row=2, values_only=True) if row[4] == 'Dibuka']
 
     if not posisi_tersedia:
         print("Tidak ada lowongan yang dibuka. Harap tambahkan lowongan terlebih dahulu.")
