@@ -22,7 +22,7 @@ def functionEditLowongan():
 
     print("\nDaftar Lowongan:")
     for row in sheet.iter_rows(min_row=2, values_only=True):
-        print(f"Kode: {row[0]}, Posisi: {row[1]}, Deskripsi: {row[2]}, Status: {row[3]}")
+        print(f"Kode: {row[0]}, Posisi: {row[1]}, Gaji: {row[2]}, Deskripsi: {row[3]}, Status: {row[4]}")
 
     # Input kode lowongan
     kode = input("\nMasukkan kode lowongan yang ingin diedit (atau ketik 'CANCEL' untuk kembali): ")
@@ -37,10 +37,11 @@ def functionEditLowongan():
     for row in sheet.iter_rows(min_row=2):
         if row[0].value == kode:
             lowongan_ditemukan = True
-            print(f"Data saat ini: Posisi = {row[1].value}, Deskripsi = {row[2].value}, Status = {row[3].value}")
+            print(f"Data saat ini: Posisi = {row[1].value}, Gaji = {row[2].value}, Deskripsi = {row[3].value}, Status = {row[4].value}")
             row[1].value = input("Masukkan posisi baru (kosongkan jika tidak ingin mengubah): ") or row[1].value
-            row[2].value = input("Masukkan deskripsi baru (kosongkan jika tidak ingin mengubah): ") or row[2].value
-            row[3].value = input("Masukkan status baru (Dibuka/Ditutup, kosongkan jika tidak ingin mengubah): ") or row[3].value
+            row[2].value = input("Masukkan gaji (Per Bulan) baru (kosongkan jika tidak ingin mengubah): ") or row[2].value
+            row[3].value = input("Masukkan deskripsi baru (kosongkan jika tidak ingin mengubah): ") or row[3].value
+            row[4].value = input("Masukkan status baru (Dibuka/Ditutup, kosongkan jika tidak ingin mengubah): ") or row[4].value
             print("Lowongan berhasil diperbarui.")
             break
 

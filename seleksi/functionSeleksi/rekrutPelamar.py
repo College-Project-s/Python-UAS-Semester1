@@ -29,7 +29,7 @@ def functionRekrutPelamar():
         # Filter posisi yang dibuka dan memiliki pelamar dengan wawancara selesai, namun belum ada di seleksi
         posisi_tersedia = []
         for lowongan in sheet_lowongan.iter_rows(min_row=2, values_only=True):
-            kode_lowongan, posisi, _, status = lowongan
+            kode_lowongan, posisi, gaji, *_, status = lowongan 
             if status == 'Dibuka':
                 pelamar_tersedia = any(
                     row[3] == posisi and row[4] == "Selesai" and row[0] not in kode_pelamar_seleksi
@@ -37,6 +37,7 @@ def functionRekrutPelamar():
                 )
                 if pelamar_tersedia:
                     posisi_tersedia.append(posisi)
+
 
         if not posisi_tersedia:
             print("Tidak ada lowongan yang dibuka dengan pelamar (wawancara selesai) yang belum masuk seleksi.")
